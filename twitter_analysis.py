@@ -52,20 +52,25 @@ def track_emotions(s):
 		for i in range(0,len(arr)):
 			try:
 				valence_total += valence[ arr[i] ]
-				wordcount+=1
 			except KeyError:
 				pass
+
 			try:
 				dominance_total += dominance[ arr[i] ]
-				wordcount+=1
 			except KeyError:
 				pass
 
 			try:
 				arousal_total += arousal[ arr[i] ]
-				wordcount+=1
 			except KeyError:
 				pass
+
+			try:
+				if (arousal[ arr[i] ]):
+					wordcount+=1
+			except KeyError:
+				pass
+
 		h.update(out)
 		print datetime.datetime.now(),"\t",h.hexdigest(),"\t",str(wordcount),"\t",str(valence_total), "\t", str(arousal_total) , "\t", str(dominance_total)
 		sys.stdout.flush()
